@@ -1,31 +1,33 @@
-package com.example.employee_management.entities;
+package com.example.employee_management.dto;
 
+import com.example.employee_management.entities.Employee;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 
-public class Department {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class DepartmentDto {
+
+
     private Long id;
     private String name;
     private LocalDate createdDate;
-    @OneToOne
-    @JoinColumn(name = "department_head_id")
+
+    @JsonIgnoreProperties({"dateOfBirth", "salary", "department", "address", "joiningDate", "yearlyBonusPercentage", "reportingManager"})
     private Employee departmentHead;
-    @OneToMany(mappedBy = "department")
+    @JsonIgnoreProperties({"dateOfBirth", "salary", "department", "address", "joiningDate", "yearlyBonusPercentage", "reportingManager"})
     private List<Employee> employees = new ArrayList<>();
 
 

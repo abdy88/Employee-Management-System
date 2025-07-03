@@ -1,39 +1,43 @@
-package com.example.employee_management.entities;
+package com.example.employee_management.dto;
 
-
+import com.example.employee_management.common.view.Views;
+import com.example.employee_management.entities.Department;
+import com.example.employee_management.entities.Employee;
+import com.fasterxml.jackson.annotation.JsonView;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 
-@Entity
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 
 
-public class Employee {
+public class EmployeeDto {
 
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
     private String name;
+
     private LocalDate dateOfBirth;
+
     private Double salary;
-    @ManyToOne
-    @JoinColumn(name = "department_id")
+
     private Department department;
+
     private String address;
+
     private String role;
+
     private LocalDate joiningDate;
+
     private Double yearlyBonusPercentage;
-    @ManyToOne
-    @JoinColumn(name = "reporting_manager_id")
+
     private Employee reportingManager;
 
 
