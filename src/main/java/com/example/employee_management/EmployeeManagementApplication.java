@@ -9,20 +9,16 @@ import org.springframework.context.annotation.Bean;
 public class EmployeeManagementApplication {
 
 
+    @Bean
+    public ModelMapper mapper() {
+
+        return new ModelMapper();
 
 
+    }
 
-	@Bean
-	public ModelMapper mapper ()
-	{
-
-		return new ModelMapper();
-
-
-	}
-
-	public static void main(String[] args) {
-		SpringApplication.run(EmployeeManagementApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(EmployeeManagementApplication.class, args);
+    }
 
 }
