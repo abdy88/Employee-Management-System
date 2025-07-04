@@ -1,13 +1,11 @@
 package com.example.employee_management.controller;
 
-
-
 import com.example.employee_management.dto.DepartmentDto;
 import com.example.employee_management.dto.DepartmentSummaryDto;
+import com.example.employee_management.dto.PageableResponse;
 import com.example.employee_management.service.DepartmentService;
-import com.fasterxml.jackson.annotation.JsonView;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +21,7 @@ public class DepartmentController {
 
 
     @PostMapping
-    ResponseEntity<DepartmentDto> createDepartment(@RequestBody DepartmentDto departmentDto) {
+    ResponseEntity<DepartmentDto> createDepartment(@RequestBody @Valid DepartmentDto departmentDto) {
 
         DepartmentDto department = departmentService.createDepartment(departmentDto);
         return new ResponseEntity<>(department, HttpStatus.CREATED);
@@ -33,33 +31,43 @@ public class DepartmentController {
 
     @PutMapping("/{id}")
     public ResponseEntity<DepartmentDto> updateDepartment(@PathVariable Long id,
-                                                          @RequestBody DepartmentDto dto) {
+                                                          @RequestBody @Valid DepartmentDto dto) {
         DepartmentDto department = departmentService.updateDepartment(id, dto);
         return new ResponseEntity<>(department, HttpStatus.OK);
     }
 
 
     @GetMapping("/all")
-    public ResponseEntity<Page<DepartmentSummaryDto>> getAllDepartments(@RequestParam(value = "pageNumber", defaultValue = "0", required = false) int pageNumber,
-                                                                        @RequestParam(value = "pageSize", defaultValue = "20", required = false) int pageSize) {
-        Page<DepartmentSummaryDto> departments = departmentService.getAllDepartments(pageNumber, pageSize);
-        return new ResponseEntity<>(departments, HttpStatus.OK);
+    public ResponseEntity<PageableResponse<DepartmentSummaryDto>> getDepartments(
+            @RequestParam(value = "pageNumber", defaultValue = "0", required = false) int pageNumber,
+            @RequestParam(value = "pageSize", defaultValue = "20", required = false) int pageSize) {
 
+        PageableResponse<DepartmentSummaryDto> response = departmentService.getAllDepartments(pageNumber, pageSize);
+        return ResponseEntity.ok(response);
     }
 
 
     @GetMapping("/{id}")
-    public ResponseEntity<DepartmentDto> getDepartmentById(@PathVariable Long id) {
-        DepartmentDto department = departmentService.getDepartmentById(id);
+    public ResponseEntity<DepartmentSummaryDto> getDepartmentById(@PathVariable Long id) {
+        DepartmentSummaryDto department = departmentService.getDepartmentById(id);
         return new ResponseEntity<>(department, HttpStatus.OK);
     }
 
 
     @GetMapping("/details/{id}")
-    public ResponseEntity<DepartmentDto> getDepartmentWithEmployees(@PathVariable Long id) {
+    public ResponseEntity<DepartmentDto> getDepartmentWithEmployees(
+            @PathVariable Long id,
+            @RequestParam(required = false) String expand) {
 
-        DepartmentDto departmentWithEmployees = departmentService.getDepartmentWithEmployees(id);
-        return new ResponseEntity<>(departmentWithEmployees, HttpStatus.OK);
+        DepartmentDto departmentDto;
+
+        if ("employee".equalsIgnoreCase(expand)) {
+            departmentDto = departmentService.getDepartmentWithEmployees(id);
+        } else {
+            departmentDto = departmentService.getDepartmentById(id);
+        }
+
+        return new ResponseEntity<>(departmentDto, HttpStatus.OK);
     }
 
 

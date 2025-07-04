@@ -1,15 +1,15 @@
 package com.example.employee_management.entities;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.AllArgsConstructor;
+import lombok.*;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 
+@Setter
+@Getter
 @Entity
 @Data
 @NoArgsConstructor
@@ -28,45 +28,4 @@ public class Department {
     @OneToMany(mappedBy = "department")
     private List<Employee> employees = new ArrayList<>();
 
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public LocalDate getCreatedDate() {
-        return createdDate;
-    }
-
-    public Employee getDepartmentHead() {
-        return departmentHead;
-    }
-
-    public List<Employee> getEmployees() {
-        return employees;
-    }
-
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setCreatedDate(LocalDate createdDate) {
-        this.createdDate = createdDate;
-    }
-
-    public void setDepartmentHead(Employee departmentHead) {
-        this.departmentHead = departmentHead;
-    }
-
-    public void setEmployees(List<Employee> employees) {
-        this.employees = employees;
-    }
 }

@@ -2,6 +2,7 @@ package com.example.employee_management.service;
 
 import com.example.employee_management.dto.DepartmentDto;
 import com.example.employee_management.dto.DepartmentSummaryDto;
+import com.example.employee_management.dto.PageableResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
@@ -15,9 +16,9 @@ public interface DepartmentService {
 
     DepartmentDto updateDepartment(Long id, DepartmentDto departmentDto);
 
-    Page<DepartmentSummaryDto> getAllDepartments(int pageNumber, int pageSize);
+    PageableResponse<DepartmentSummaryDto> getAllDepartments(int pageNumber, int pageSize);
 
-    DepartmentDto getDepartmentById(Long Id);
+    DepartmentSummaryDto getDepartmentById(Long Id);
 
     DepartmentDto getDepartmentWithEmployees(Long Id);
 
