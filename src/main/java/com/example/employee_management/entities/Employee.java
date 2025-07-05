@@ -8,8 +8,6 @@ import java.time.LocalDate;
 import java.util.Date;
 
 
-@Setter
-@Getter
 @Entity
 @Data
 @NoArgsConstructor
@@ -35,5 +33,6 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "reporting_manager_id")
     private Employee reportingManager;
+
 
 }

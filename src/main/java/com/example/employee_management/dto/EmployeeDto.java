@@ -5,6 +5,7 @@ import com.example.employee_management.entities.Employee;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonView;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -13,8 +14,6 @@ import lombok.*;
 import java.time.LocalDate;
 
 
-@Setter
-@Getter
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -22,13 +21,14 @@ import java.time.LocalDate;
 
 public class EmployeeDto {
 
-
+    @Schema(accessMode = Schema.AccessMode.READ_ONLY)
     private Long id;
 
     @NotBlank(message = "Name is mandatory")
     private String name;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
+    @Schema(type = "string", pattern = "dd-MM-yyyy", example = "05-07-2025")
     private LocalDate dateOfBirth;
 
     private Double salary;
@@ -41,6 +41,7 @@ public class EmployeeDto {
     private String role;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
+    @Schema(type = "string", pattern = "dd-MM-yyyy", example = "05-07-2025")
     private LocalDate joiningDate;
 
     private Double yearlyBonusPercentage;

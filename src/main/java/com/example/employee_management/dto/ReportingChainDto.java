@@ -9,13 +9,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 
 public class ReportingChainDto {
 
     private String employee;
     private List<ManagerDto> chain = new ArrayList<>();
-
 
 }

@@ -7,7 +7,6 @@ import com.example.employee_management.dto.EmployeeDto;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public interface EmployeeService {

@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +16,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
-
-
+@Builder
 public class DepartmentDto {
 
 
@@ -26,10 +24,10 @@ public class DepartmentDto {
     @NotBlank(message = "Name is mandatory")
     private String name;
     private LocalDate createdDate;
+    @Getter
     @JsonIgnoreProperties({"dateOfBirth", "salary", "department", "address", "joiningDate", "yearlyBonusPercentage", "reportingManager"})
     private Employee departmentHead;
     @JsonIgnoreProperties({"dateOfBirth", "salary", "department", "address", "joiningDate", "yearlyBonusPercentage", "reportingManager"})
     private List<Employee> employees = new ArrayList<>();
-
 
 }

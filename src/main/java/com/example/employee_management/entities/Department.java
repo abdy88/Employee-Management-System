@@ -8,8 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Setter
-@Getter
 @Entity
 @Data
 @NoArgsConstructor

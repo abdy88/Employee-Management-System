@@ -18,7 +18,7 @@ public class AnalyticsController {
     @Autowired
     private AnalyticsService analyticsService;
 
-    @GetMapping("/employee-summary")
+    @GetMapping("/employee-analytics")
     public ResponseEntity<EmployeeAnalyticsDto> getSummary() {
         return ResponseEntity.ok(analyticsService.getEmployeeSummary());
     }

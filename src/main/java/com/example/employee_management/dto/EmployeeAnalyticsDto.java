@@ -5,8 +5,6 @@ import lombok.*;
 import java.util.Map;
 
 
-@Getter
-@Setter
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,6 +17,5 @@ public class EmployeeAnalyticsDto {
     private double maxSalary;
     private double minSalary;
     private Map<String, Long> employeesPerDepartment;
-
 
 }
