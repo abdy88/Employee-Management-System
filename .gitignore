@@ -36,7 +36,6 @@ build/
 *.log
 
 # Sensitive or config files (if applicable)
-application.properties
 application.yml
 .env
 
