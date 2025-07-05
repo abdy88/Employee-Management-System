@@ -27,8 +27,6 @@ public class EmployeeDto {
     @NotBlank(message = "Name is mandatory")
     private String name;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
-    @Schema(type = "string", pattern = "dd-MM-yyyy", example = "05-07-2025")
     private LocalDate dateOfBirth;
 
     private Double salary;
@@ -40,8 +38,6 @@ public class EmployeeDto {
 
     private String role;
 
-    @JsonFormat(pattern = "dd-MM-yyyy")
-    @Schema(type = "string", pattern = "dd-MM-yyyy", example = "05-07-2025")
     private LocalDate joiningDate;
 
     private Double yearlyBonusPercentage;

@@ -64,7 +64,7 @@ public class GlobalExceptionHandler {
         Map<String, Object> response = new HashMap<>();
         response.put("status", HttpStatus.BAD_REQUEST.value());
         response.put("error", "Bad Request");
-        response.put("message", "Invalid date format. Please use dd-MM-yyyy.");
+        response.put("message", "Invalid date format. Please use yyyy-MM-dd");
         response.put("timestamp", LocalDateTime.now());
         return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
     }
